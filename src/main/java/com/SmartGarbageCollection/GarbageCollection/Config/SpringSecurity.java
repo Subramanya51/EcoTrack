@@ -97,7 +97,7 @@ public class SpringSecurity {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/**", "/auth/**","/admin/**","/collector/**").permitAll()
+                        .requestMatchers("/public/**", "/auth/**","/admin/**","/collector/**","HealthCheckController/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider(passwordEncoder()))
