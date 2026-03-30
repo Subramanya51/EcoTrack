@@ -94,10 +94,26 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf(csrf -> csrf.disable())
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/public/**", "/auth/**","/admin/**","/collector/**","/health/**").permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .authenticationProvider(authenticationProvider(passwordEncoder()))
+//                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/**", "/auth/**","/admin/**","/collector/**","/health/**").permitAll()
+                        // Public endpoints
+                        .requestMatchers("/", "/auth/**", "/health/**").permitAll()
+
+                        // Role-based access
+                        .requestMatchers("/pickup/**").hasAuthority("RESIDENT")
+                        .requestMatchers("/collector/**").hasAuthority("COLLECTOR")
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+
+                        // Everything else
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider(passwordEncoder()))
