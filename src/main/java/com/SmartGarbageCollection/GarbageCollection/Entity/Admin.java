@@ -43,7 +43,7 @@ public class Admin {
         this.createdAt = LocalDateTime.now();
 
         if (this.role == null) {
-            this.role = Role.ROlE_ADMIN;
+            this.role = Role.ROLE_ADMIN;
         }
     }
 }
