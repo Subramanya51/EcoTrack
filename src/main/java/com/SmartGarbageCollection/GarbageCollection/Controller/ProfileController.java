@@ -2,26 +2,53 @@ package com.SmartGarbageCollection.GarbageCollection.Controller;
 
 import com.SmartGarbageCollection.GarbageCollection.DTO.ProfileDTO;
 import com.SmartGarbageCollection.GarbageCollection.Service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user") // 🔥 authenticated route
+@RequestMapping("/api/users")
+@RequiredArgsConstructor
 public class ProfileController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
+    // 🔹 GET PROFILE
     @GetMapping("/profile")
-    public ResponseEntity<ProfileDTO> getProfile() {
+    public ResponseEntity<ProfileDTO> getProfile(Authentication authentication) {
 
-        String userName = SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getName();
+        String userName = authentication.getName();
 
         return ResponseEntity.ok(userService.getProfile(userName));
     }
 }
+
+
+//package com.SmartGarbageCollection.GarbageCollection.Controller;
+//
+//import com.SmartGarbageCollection.GarbageCollection.DTO.ProfileDTO;
+//import com.SmartGarbageCollection.GarbageCollection.Service.UserService;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.web.bind.annotation.*;
+//
+//@RestController
+//@RequestMapping("/user") // 🔥 authenticated route
+//public class ProfileController {
+//
+//    @Autowired
+//    private UserService userService;
+//
+//    @GetMapping("/profile")
+//    public ResponseEntity<ProfileDTO> getProfile() {
+//
+//        String userName = SecurityContextHolder
+//                .getContext()
+//                .getAuthentication()
+//                .getName();
+//
+//        return ResponseEntity.ok(userService.getProfile(userName));
+//    }
+//}
