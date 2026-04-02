@@ -77,7 +77,7 @@ public class AdminServiceImpl implements AdminService {
 //                .name(dto.getName())
 //                .email(dto.getEmail())
 //                .password(passwordEncoder.encode(dto.getPassword()))
-//                .role(Role.ADMIN) // 🔐 Controlled here
+//                .role(Role.ROlE_ADMIN) // 🔐 Controlled here
 //                .createdAt(LocalDateTime.now())
 //                .build();
 //

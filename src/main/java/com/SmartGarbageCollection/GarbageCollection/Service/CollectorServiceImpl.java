@@ -166,7 +166,7 @@ public class CollectorServiceImpl implements CollectorService {
 //                .name(dto.getName())
 //                .phone(dto.getPhone())
 //                .password(passwordEncoder.encode(rawPassword))
-//                .role(Role.COLLECTOR)
+//                .role(Role.ROLE_COLLECTOR)
 //                .createdAt(LocalDateTime.now())
 //                .createdBy(admin.getId())
 //                .build();

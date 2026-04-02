@@ -49,7 +49,7 @@ public class Collector {
         this.createdAt = LocalDateTime.now();
 
         if (this.role == null) {
-            this.role = Role.COLLECTOR;
+            this.role = Role.ROLE_COLLECTOR;
         }
     }
 }

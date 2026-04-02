@@ -52,7 +52,7 @@ public class User {
     @PrePersist
     public void prePersist() {
         if (this.role == null) {
-            this.role = Role.RESIDENT;
+            this.role = Role.ROLE_RESIDENT;
         }
         if (this.ecoPoints == null) {
             this.ecoPoints = 0;
