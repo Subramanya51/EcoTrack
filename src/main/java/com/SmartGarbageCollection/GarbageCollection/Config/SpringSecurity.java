@@ -71,9 +71,9 @@ public class SpringSecurity {
                         ).permitAll()
 
                         // 🔒 ROLE-BASED ACCESS
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/collector/**").hasRole("COLLECTOR")
-                        .requestMatchers("/pickup/**").hasRole("RESIDENT")
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/collector/**").hasAuthority("ROLE_COLLECTOR")
+                        .requestMatchers("/pickup/**").hasAuthority("ROLE_RESIDENT")
 
                         // 🔐 ALL OTHER REQUESTS
                         .anyRequest().authenticated()
