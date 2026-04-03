@@ -67,7 +67,8 @@ public class SpringSecurity {
                                 "/public/**",
                                 "/health/**",
                                 "/swagger-ui/**",
-                                "/v3/api-docs/**"
+                                "/v3/api-docs/**",
+                                "/users/login"
                         ).permitAll()
 
                         // 🔒 ROLE-BASED ACCESS
