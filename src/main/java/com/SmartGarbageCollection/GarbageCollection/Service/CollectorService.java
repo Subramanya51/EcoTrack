@@ -1,7 +1,10 @@
 package com.SmartGarbageCollection.GarbageCollection.Service;
 
 import com.SmartGarbageCollection.GarbageCollection.DTO.CollectorCreateDTO;
+import com.SmartGarbageCollection.GarbageCollection.DTO.CollectorListDTO;
 import com.SmartGarbageCollection.GarbageCollection.DTO.CollectorResponseDTO;
+
+import java.util.List;
 
 public interface CollectorService {
 
@@ -10,6 +13,7 @@ public interface CollectorService {
 
     // 🔹 Collector login (returns JWT token)
     String login(String collectorId, String password);
+    List<CollectorListDTO> getAllCollectors();
 }
 
 

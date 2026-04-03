@@ -1,6 +1,7 @@
 package com.SmartGarbageCollection.GarbageCollection.Service;
 
 import com.SmartGarbageCollection.GarbageCollection.DTO.CollectorCreateDTO;
+import com.SmartGarbageCollection.GarbageCollection.DTO.CollectorListDTO;
 import com.SmartGarbageCollection.GarbageCollection.DTO.CollectorResponseDTO;
 import com.SmartGarbageCollection.GarbageCollection.Entity.Admin;
 import com.SmartGarbageCollection.GarbageCollection.Entity.Collector;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
@@ -107,6 +109,18 @@ public class CollectorServiceImpl implements CollectorService {
         }
 
         return password.toString();
+    }
+    @Override
+    public List<CollectorListDTO> getAllCollectors() {
+
+        return collectorRepository.findAll()
+                .stream()
+                .map(c -> new CollectorListDTO(
+                        c.getCollectorId(),
+                        c.getName(),
+                        c.getPhone()
+                ))
+                .toList();
     }
 }
 
