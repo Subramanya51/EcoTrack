@@ -66,7 +66,8 @@ public class SpringSecurity {
                                 "/public/**",
                                 "/health/**",
                                 "/collector",
-                                "/admins/login/**"
+                                "/admins/login/**",
+                                "/admins/register/**"
                         ).permitAll()
 
                         // 🔒 ROLE-BASED ACCESS
