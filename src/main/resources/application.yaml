@@ -20,7 +20,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate   # 🔥 SAFE for production
+      ddl-auto: update   # 🔥 SAFE for production
     show-sql: false        # 🔥 disable in production
     open-in-view: false
     properties:
