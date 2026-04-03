@@ -62,12 +62,11 @@ public class SpringSecurity {
 
                         // 🌐 PUBLIC ENDPOINTS
                         .requestMatchers(
-                                "/auth/**",
+                                "/users/login/**",
                                 "/public/**",
                                 "/health/**",
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/users/login"
+                                "/collector/**",
+                                "/admins/login/**"
                         ).permitAll()
 
                         // 🔒 ROLE-BASED ACCESS

@@ -21,9 +21,6 @@ import org.springframework.web.bind.annotation.*;
 public class PublicController {
 
     private final UserService userService;
-    private final AuthenticationManager authenticationManager;
-    private final JwtUtility jwtUtility;
-
     // 🔹 REGISTER USER
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@Valid @RequestBody UserRegisterDTO dto) {
@@ -39,25 +36,7 @@ public class PublicController {
 
         return ResponseEntity.ok("User registered successfully");
     }
-    @PostMapping("user/login")
-    public ResponseEntity<String> login(@Valid @RequestBody LoginDTO dto) {
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        dto.getUserName(),
-                        dto.getPassword()
-                )
-        );
-
-        UserDetails userDetails = (UserDetails) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
-
-        String token = jwtUtility.generateToken(userDetails);
-
-        return ResponseEntity.ok(token);
-    }
 }
 
 
