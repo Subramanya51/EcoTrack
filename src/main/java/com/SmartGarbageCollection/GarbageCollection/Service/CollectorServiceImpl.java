@@ -93,7 +93,7 @@ public class CollectorServiceImpl implements CollectorService {
         // 🔹 Generate JWT using UserDetails
         UserDetailImpl userDetails = new UserDetailImpl(collector);
 
-        return jwtUtility.generateToken(userDetails);
+        return jwtUtility.generateToken(userDetails.getUsername());
     }
 
     // 🔐 RANDOM PASSWORD GENERATOR

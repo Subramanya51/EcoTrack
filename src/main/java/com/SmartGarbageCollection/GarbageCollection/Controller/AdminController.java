@@ -37,25 +37,42 @@ public class AdminController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@Valid @RequestBody AdminLoginDTO dto) {
 
-        authenticationManager.authenticate(
+        Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         dto.getEmail(),
                         dto.getPassword()
                 )
         );
 
-        UserDetails userDetails = (UserDetails) authenticationManager
-                .authenticate(
-                        new UsernamePasswordAuthenticationToken(
-                                dto.getEmail(),
-                                dto.getPassword()
-                        )
-                ).getPrincipal();
+        // ✅ SAFE and CORRECT
+        String username = authentication.getName();
 
-        String token = jwtUtility.generateToken(userDetails);
+        String token = jwtUtility.generateToken(username);
 
         return ResponseEntity.ok(token);
     }
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@Valid @RequestBody AdminLoginDTO dto) {
+//
+//        authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(
+//                        dto.getEmail(),
+//                        dto.getPassword()
+//                )
+//        );
+//
+//        UserDetails userDetails = (UserDetails) authenticationManager
+//                .authenticate(
+//                        new UsernamePasswordAuthenticationToken(
+//                                dto.getEmail(),
+//                                dto.getPassword()
+//                        )
+//                ).getPrincipal();
+//
+//        String token = jwtUtility.generateToken(userName);
+//
+//        return ResponseEntity.ok(token);
+//    }
 
     // 🔥 CREATE COLLECTOR (ADMIN ONLY)
     @PostMapping("/collectors")
