@@ -44,7 +44,7 @@ public class UserController {
         return ResponseEntity.ok(token);
     }
     // 🔹 UPDATE PROFILE
-    @PutMapping("/profile")
+    @PutMapping("/profile-edit")
     public ResponseEntity<String> updateProfile(@Valid @RequestBody UpdateProfileDTO dto) {
 
         String userName = SecurityContextHolder
