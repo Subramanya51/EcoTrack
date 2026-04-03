@@ -57,31 +57,27 @@ public class SpringSecurity {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-                )
-
                 // 🔐 Authorization Rules
-//                .authorizeHttpRequests(auth -> auth
-//
-//                        // 🌐 PUBLIC ENDPOINTS
-//                        .requestMatchers(
-//                                "/auth/**",
-//                                "/public/**",
-//                                "/health/**",
-//                                "/swagger-ui/**",
-//                                "/v3/api-docs/**",
-//                                "/users/login"
-//                        ).permitAll()
-//
-//                        // 🔒 ROLE-BASED ACCESS
-//                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-//                        .requestMatchers("/collector/**").hasAuthority("ROLE_COLLECTOR")
-//                        .requestMatchers("/pickup/**").hasAuthority("ROLE_RESIDENT")
-//
-//                        // 🔐 ALL OTHER REQUESTS
-//                        .anyRequest().authenticated()
-//                )
+                .authorizeHttpRequests(auth -> auth
+
+                        // 🌐 PUBLIC ENDPOINTS
+                        .requestMatchers(
+                                "/auth/**",
+                                "/public/**",
+                                "/health/**",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/users/login"
+                        ).permitAll()
+
+                        // 🔒 ROLE-BASED ACCESS
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/collector/**").hasAuthority("ROLE_COLLECTOR")
+                        .requestMatchers("/pickup/**").hasAuthority("ROLE_RESIDENT")
+
+                        // 🔐 ALL OTHER REQUESTS
+                        .anyRequest().authenticated()
+                )
 
                 // 🔑 Attach authentication provider
                 .authenticationProvider(authenticationProvider())
