@@ -57,13 +57,13 @@ public class PickupController {
 
     // 🔹 GET ACTIVE PICKUP
     @GetMapping("/active")
-    public ResponseEntity<Pickup> getActivePickup(Authentication authentication) {
+    public ResponseEntity<?> getActivePickup(Authentication authentication) {
 
         String userName = authentication.getName();
 
-        Pickup pickup = pickupService.getActivePickup(userName);
+        String id = pickupService.getActivePickup(userName);
 
-        return ResponseEntity.ok(pickup);
+        return ResponseEntity.ok(id);
     }
 }
 

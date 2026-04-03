@@ -35,7 +35,7 @@ public class PickupService {
         boolean hasActive = pickupRepository
                 .findTopByUserAndStatusInOrderByIdDesc(
                         user,
-                        List.of(PickupStatus.REQUESTED, PickupStatus.IN_PROGRESS)
+                        List.of(PickupStatus.REQUESTED)
                 ).isPresent();
 
         if (hasActive) {
@@ -99,17 +99,19 @@ public class PickupService {
     }
 
     // 🔹 GET ACTIVE PICKUP
-    public Pickup getActivePickup(String userName) {
+    public String getActivePickup(String userName) {
 
         User user = userRepository.findByUserNameIgnoreCase(userName)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
-        return pickupRepository
+         Pickup pickup=pickupRepository
                 .findTopByUserAndStatusInOrderByIdDesc(
                         user,
-                        List.of(PickupStatus.REQUESTED, PickupStatus.IN_PROGRESS)
+                        List.of(PickupStatus.REQUESTED)
                 )
                 .orElse(null);
+        return pickup != null ? pickup.getId() : null;
+
     }
 
     // 🔹 FIREBASE PUSH
