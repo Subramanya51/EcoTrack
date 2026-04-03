@@ -65,7 +65,7 @@ public class SpringSecurity {
                                 "/users/login/**",
                                 "/public/**",
                                 "/health/**",
-                                "/collector",
+                                "/collector/**",
                                 "/admins/login/**",
                                 "/admins/register/**"
                         ).permitAll()
