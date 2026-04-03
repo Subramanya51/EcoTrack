@@ -65,7 +65,7 @@ public class SpringSecurity {
                                 "/users/login/**",
                                 "/public/**",
                                 "/health/**",
-                                "/collector/**",
+                                "/collector",
                                 "/admins/login/**"
                         ).permitAll()
 
@@ -77,9 +77,6 @@ public class SpringSecurity {
                         // 🔐 ALL OTHER REQUESTS
                         .anyRequest().authenticated()
                 )
-
-                // 🔑 Attach authentication provider
-                .authenticationProvider(authenticationProvider())
 
                 // ⚙️ Add JWT filter BEFORE username/password filter
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
