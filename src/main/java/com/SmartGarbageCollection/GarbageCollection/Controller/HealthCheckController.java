@@ -7,10 +7,10 @@ import java.time.Instant;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/health")
+
 public class HealthCheckController {
 
-    @GetMapping
+    @GetMapping("/health")
     public ResponseEntity<Map<String, Object>> healthCheck() {
 
         return ResponseEntity.ok(
