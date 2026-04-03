@@ -24,25 +24,25 @@ public class UserController {
     private final UserService userService;
 
     // 🔐 LOGIN
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody LoginDTO dto) {
-
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        dto.getUserName(),
-                        dto.getPassword()
-                )
-        );
-
-        UserDetails userDetails = (UserDetails) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
-
-        String token = jwtUtility.generateToken(userDetails);
-
-        return ResponseEntity.ok(token);
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@Valid @RequestBody LoginDTO dto) {
+//
+//        authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(
+//                        dto.getUserName(),
+//                        dto.getPassword()
+//                )
+//        );
+//
+//        UserDetails userDetails = (UserDetails) SecurityContextHolder
+//                .getContext()
+//                .getAuthentication()
+//                .getPrincipal();
+//
+//        String token = jwtUtility.generateToken(userDetails);
+//
+//        return ResponseEntity.ok(token);
+//    }
     // 🔹 UPDATE PROFILE
     @PutMapping("/profile-edit")
     public ResponseEntity<String> updateProfile(@Valid @RequestBody UpdateProfileDTO dto) {

@@ -1,12 +1,18 @@
 package com.SmartGarbageCollection.GarbageCollection.Controller;
 
+import com.SmartGarbageCollection.GarbageCollection.DTO.LoginDTO;
 import com.SmartGarbageCollection.GarbageCollection.DTO.UserRegisterDTO;
 import com.SmartGarbageCollection.GarbageCollection.Entity.Role;
 import com.SmartGarbageCollection.GarbageCollection.Entity.User;
 import com.SmartGarbageCollection.GarbageCollection.Service.UserService;
+import com.SmartGarbageCollection.GarbageCollection.Utilis.JwtUtility;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 public class PublicController {
 
     private final UserService userService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtility jwtUtility;
 
     // 🔹 REGISTER USER
     @PostMapping("/register")
@@ -30,6 +38,25 @@ public class PublicController {
         userService.registerUser(user);
 
         return ResponseEntity.ok("User registered successfully");
+    }
+    @PostMapping("user/login")
+    public ResponseEntity<String> login(@Valid @RequestBody LoginDTO dto) {
+
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        dto.getUserName(),
+                        dto.getPassword()
+                )
+        );
+
+        UserDetails userDetails = (UserDetails) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        String token = jwtUtility.generateToken(userDetails);
+
+        return ResponseEntity.ok(token);
     }
 }
 
