@@ -51,7 +51,7 @@ public class AdminController {
 
         String token = jwtUtility.generateToken(username);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok("Token:"+token+"\nUserName:"+username);
     }
 //    @PostMapping("/login")
 //    public ResponseEntity<String> login(@Valid @RequestBody AdminLoginDTO dto) {
