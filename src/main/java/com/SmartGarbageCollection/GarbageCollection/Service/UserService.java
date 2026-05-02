@@ -1,6 +1,6 @@
 package com.SmartGarbageCollection.GarbageCollection.Service;
 
-import com.SmartGarbageCollection.GarbageCollection.DTO.ChangePasswordDTO;
+import  com.SmartGarbageCollection.GarbageCollection.DTO.ChangePasswordDTO;
 import com.SmartGarbageCollection.GarbageCollection.DTO.ProfileDTO;
 import com.SmartGarbageCollection.GarbageCollection.DTO.UpdateProfileDTO;
 import com.SmartGarbageCollection.GarbageCollection.Entity.User;

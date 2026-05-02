@@ -42,6 +42,10 @@ public class AdminServiceImpl implements AdminService {
 
         return "Admin registered successfully";
     }
+    public Admin getAdminByEmail(String email) {
+        return adminRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() -> new RuntimeException("Admin not found"));
+    }
 }
 
 
