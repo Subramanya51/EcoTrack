@@ -1,9 +1,7 @@
 package com.SmartGarbageCollection.GarbageCollection.Controller;
 
 import com.SmartGarbageCollection.GarbageCollection.DTO.*;
-import com.SmartGarbageCollection.GarbageCollection.Entity.Admin;
 import com.SmartGarbageCollection.GarbageCollection.Service.AdminService;
-import com.SmartGarbageCollection.GarbageCollection.Service.AdminServiceImpl;
 import com.SmartGarbageCollection.GarbageCollection.Service.AdminStatsService;
 import com.SmartGarbageCollection.GarbageCollection.Service.CollectorService;
 import com.SmartGarbageCollection.GarbageCollection.Utilis.JwtUtility;
@@ -15,9 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/admins")
@@ -27,7 +23,6 @@ public class AdminController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtility jwtUtility;
     private final AdminService adminService;
-    private final AdminServiceImpl adminserviceimpl;
     private final CollectorService collectorService;
     private final AdminStatsService adminStatsService;
 
@@ -42,7 +37,7 @@ public class AdminController {
 
     // 🔐 LOGIN ADMIN
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody AdminLoginDTO dto) {
+    public ResponseEntity<String> login(@Valid @RequestBody AdminLoginDTO dto) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -51,38 +46,13 @@ public class AdminController {
                 )
         );
 
-        String email = authentication.getName();
+        // ✅ SAFE and CORRECT
+        String username = authentication.getName();
 
-        // 🔥 FETCH ADMIN FROM DB
-        Admin admin = adminserviceimpl.getAdminByEmail(email);
+        String token = jwtUtility.generateToken(username);
 
-        String token = jwtUtility.generateToken(email);
-
-        // ✅ RETURN WITHOUT DTO
-        Map<String, String> response = new HashMap<>();
-        response.put("token", token);
-        response.put("name", admin.getName());
-        response.put("email", admin.getEmail());
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(token);
     }
-//    @PostMapping("/login")
-//    public ResponseEntity<String> login(@Valid @RequestBody AdminLoginDTO dto) {
-//
-//        Authentication authentication = authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(
-//                        dto.getEmail(),
-//                        dto.getPassword()
-//                )
-//        );
-//
-//        // ✅ SAFE and CORRECT
-//        String username = authentication.getName();
-//
-//        String token = jwtUtility.generateToken(username);
-//
-//        return ResponseEntity.ok("Token:"+token+"\nUserName:"+username);
-//    }
 //    @PostMapping("/login")
 //    public ResponseEntity<String> login(@Valid @RequestBody AdminLoginDTO dto) {
 //

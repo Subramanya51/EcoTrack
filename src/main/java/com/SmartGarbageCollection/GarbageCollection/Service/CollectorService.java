@@ -8,12 +8,13 @@ import java.util.List;
 
 public interface CollectorService {
 
-    // 🔹 Create collector (by admin)
     CollectorResponseDTO createCollector(CollectorCreateDTO dto, String adminEmail);
 
-    // 🔹 Collector login (returns JWT token)
     String login(String collectorId, String password);
+
     List<CollectorListDTO> getAllCollectors();
+
+    List<CollectorListDTO> getCollectorsByAdmin(String adminEmail);
 }
 
 

@@ -1,3 +1,63 @@
+#server:
+#  port: 8080
+#
+#spring:
+#  application:
+#    name: GarbageCollection
+#
+#  datasource:
+#    url: jdbc:postgresql://ep-noisy-sun-a1yijent-pooler.ap-southeast-1.aws.neon.tech:5432/neondb?sslmode=require
+#    username: neondb_owner
+#    password: npg_Z9F5uPUiVLEz
+#    driver-class-name: org.postgresql.Driver
+#
+#    hikari:
+#      maximum-pool-size: 10
+#      minimum-idle: 2
+#      idle-timeout: 30000
+#      connection-timeout: 20000
+#      max-lifetime: 1800000
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: false
+#    open-in-view: false
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        format_sql: false
+#
+#jwt:
+#  secret: 9f3a8c7e5b1d4a6f8e2c9b0d7f3a1c5e8d6b4a2f9c7e5d3b1a6c8f0e2d4b7a9
+#  expiration: 3600000
+#
+#logging:
+#  level:
+#    root: INFO
+#    org.springframework.security: INFO
+#    org.hibernate.SQL: WARN
+#    org.hibernate.type.descriptor.sql: WARN
+#
+#firebase:
+#  database:
+#    url: https://ecosync-3a5c1-default-rtdb.firebaseio.com
+#
+#  credentials: |
+#    {
+#      "type": "service_account",
+#      "project_id": "ecosync-3a5c1",
+#      "private_key_id": "7fe60a366e4e15f8b6699c2177d1845ffdef25cb",
+#      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDsJfMGWdtEdz/j\nNb36iKecuHFJOqo9qn2JCU46EJ6IhE1qYhv7pfXjjFnarq6hlxRfmXLzZZC+VpB0\ndUgm8BhB78wxV4AVpYWCX0AIWCW8p8LC4KXr7IHmMK7b/AT2JWy2xq9kOTh9tI3+\n0oOwaMGjZQe7xiqUvtZDBjh09UEn0M8wed95Nl1t9po+UjKo95cfzDlae4MbWUEZ\nCcyRDqEuw44Jpp2304Z7mmEFKEaPtcuuXRMavArJutFvEMEEnuChJhDvLeXDEgHh\ns2EccCLF6qx+i4Q2QyVks21j10mrDXAMlSA28OPfUQw59qn69Gu8xdsbzN8Q7hSB\nxC0iLtWzAgMBAAECggEALjgjP7v4kYbxhyvumgmDHMZwzc9goJ8s4NRkbjLwhHG4\noTjAl1ldLgM7VvTXkyL5xthGymK3mLlinpiR3aUiak1f3sxsclAqOGEiLD/sauc+\n1FuZvfpVVlNy9fV2lyKuC3wJugkFCH19SUG0qqNmOu+8OsFHdkN/tjCSfjm+Xec9\nVGDXkoMliRZQxuVyYLph6jYaSKZF59XSCMpLASzvvzH31Wu8aApouWB+GefhzVzD\nt008XiB/qPHZdvNNHFXK8JTO+Pw1mQ6St/MVbhO0xEvfXttQbEQ9h1dWLy2sHlGi\nlSkPq4LmlFfXsvQmTQOQLN8sW8b4O3UmdwT3vcl46QKBgQD5XjoOVqye57e5cJFW\nDGguif2hJ2pW8NkyjCccdD5L8etROpXwx15y87BGKDeUiDLvp0I+35NyVsnrFpZX\n39GGV/t/OZGK/IXWIgBEMDZBAPkvaReHzMnoTfqWQnIBKF1pByPYKLP/bu8Undmx\nUojA4/Tp03CWURFy5F6GR8wRtQKBgQDybbfI7NZDCkpBwUZ0WRZZ3UahpP7hSCSm\n+gI+15S9fsBY6/kHZJiWCjcc6SegGi4yTe+049NR1D7d/LyCk89XzbY0HGkH/CGP\nbZjH6zm5sZx+myMrvZU5Q+OzDmYJJPNEfuS4qqgQgEz4ffW1hCjnh71/uSLTP68/\no1sZS+wKxwKBgBRcTDM1gnyrAMZEWamD89Gw9KN+22Dj42gMJ3lcSGXdB9CnDu0M\n6jpKiV8BE6CuCjKlHnSRvrE8QtpOCtJ79NiaQG+f3LFTcv4L4qeupA9kq/PiCcjN\nwMKV81rna/WKPS5BJf0VPbUicqTlSov+6CmPs0SQPgYX8mvGF62xGQltAoGAST/x\nmhpFmzgOu9OEUD9iy4BaiRjrknJT8Mf1ybslzCPyRmv2cM9qc1tez7N7L5r5fmWi\nGgwEm+L/o99rriCvM56KgTBcY/dAxK+ezDk81ejemjqR4/OClSz4LfAZ0IWDo5yb\ny1h1M5cwqpyUk2X9XgfbsC3mYeIKN7ZKHlicV50CgYBE8yc8wrgwgPl09EVzg4eR\nwz9WNQo+qAp9lhtRId8fzteKYWwuO6je3LVhRKyLsYzmQjcPuIs5r3CezJzFJwAb\nvaw+DBMg0urS7wYs5vzYiY90xjkjwWQ0gMPpYsjgKggIDkWmwyWuE418TdUMXmOd\nXBazrOGi3Mg+9u+4GN8D4w==\n-----END PRIVATE KEY-----\n",
+#      "client_email": "firebase-adminsdk-fbsvc@ecosync-3a5c1.iam.gserviceaccount.com",
+#      "client_id": "117939141994169528455",
+#      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+#      "token_uri": "https://oauth2.googleapis.com/token",
+#      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+#      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40ecosync-3a5c1.iam.gserviceaccount.com",
+#      "universe_domain": "googleapis.com"
+#    }
+
 server:
   port: ${PORT:8080}
 
@@ -45,270 +105,3 @@ firebase:
   database:
     url: ${FIREBASE_DB_URL}
   credentials: ${FIREBASE_CREDENTIALS}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##server:
-##  context-path: /gb-collection
-##spring:
-##  application:
-##    name: GarbageCollection
-##
-##  datasource:
-##    url: jdbc:postgresql://localhost:5432/smart_garbage
-##    username: postgres
-##    password: 2006
-##    driver-class-name: org.postgresql.Driver
-##  jpa:
-##    hibernate:
-##      ddl-auto: update  # Use 'validate' or 'none' in production
-##    show-sql: true  # Optional, to log SQL statements
-##    open-in-view: false
-##
-##
-#server:
-#  port: ${PORT:8080}
-#
-#spring:
-#  application:
-#    name: GarbageCollection
-#
-#  datasource:
-#    url: ${DB_URL}
-#    username: ${DB_USERNAME}
-#    password: ${DB_PASSWORD}
-#    driver-class-name: org.postgresql.Driver
-#
-#  jpa:
-#    hibernate:
-#      ddl-auto: update   # later → change to validate
-#    show-sql: true
-#    open-in-view: false
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
-#
-#logging:
-#  level:
-#    root: INFO

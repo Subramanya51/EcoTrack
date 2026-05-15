@@ -42,7 +42,9 @@ public class Collector {
 
     private LocalDateTime createdAt;
 
-    private Long createdBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "admin_id", nullable = false)
+    private Admin admin;
 
     @PrePersist
     public void prePersist() {

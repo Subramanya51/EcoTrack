@@ -66,7 +66,7 @@ public class CollectorServiceImpl implements CollectorService {
                 .password(passwordEncoder.encode(rawPassword))
                 .role(Role.ROLE_COLLECTOR)
                 .createdAt(LocalDateTime.now())
-                .createdBy(admin.getId())
+                .admin(admin)
                 .build();
 
         collectorRepository.save(collector);
@@ -109,6 +109,23 @@ public class CollectorServiceImpl implements CollectorService {
         }
 
         return password.toString();
+    }
+    @Override
+    public List<CollectorListDTO> getCollectorsByAdmin(String adminEmail) {
+
+        Admin admin = adminRepository.findByEmailIgnoreCase(adminEmail)
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin not found")
+                );
+
+        return collectorRepository.findByAdmin_Id(admin.getId())
+                .stream()
+                .map(c -> new CollectorListDTO(
+                        c.getCollectorId(),
+                        c.getName(),
+                        c.getPhone()
+                ))
+                .toList();
     }
     @Override
     public List<CollectorListDTO> getAllCollectors() {

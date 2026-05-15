@@ -51,8 +51,7 @@ public class SpringSecurity {
 
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",   // React
-                "http://localhost:5173",
-                "https://ecotrack-manager.vercel.app"// Vite
+                "http://localhost:5173"    // Vite
         ));
 
         config.setAllowedMethods(List.of(
